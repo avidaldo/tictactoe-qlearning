@@ -1,8 +1,8 @@
 import os
 from pathlib import Path
 
-from ..core.environment import TicTacToeEnvironment
-from ..core.agents.q_learning_agent import QLearningAgent
+from core.environment import TicTacToeEnvironment
+from core.agents.q_learning_agent import QLearningAgent
 
 
 class TicTacToe(TicTacToeEnvironment):
@@ -157,7 +157,7 @@ def main():
     else:
         print(f"\nWarning: No trained Q-table found at '{q_table_file}'")
         print("The agent will play randomly. Please train the agent first.")
-        print("Run: python3 -m 04_qlearning.standalone.train_qlearning")
+        print("Run: python3 -m standalone.train_qlearning")
         response = input("\nContinue anyway? (y/n): ")
         if response.lower() != 'y':
             return

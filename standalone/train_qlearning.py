@@ -8,13 +8,15 @@ written from the point of view of the player to move, so the resulting table can
 import random
 from pathlib import Path
 
-from ..core.environment import TicTacToeEnvironment
-from ..core.agents.q_learning_agent import QLearningAgent
-from ..core.agents.random_agent import RandomAgent
-from ..core.agents.minimax_agent import MinimaxAgent
-from ..core.training import play_game, evaluate_agent
+from core.environment import TicTacToeEnvironment
+from core.agents.q_learning_agent import QLearningAgent
+from core.agents.random_agent import RandomAgent
+from core.agents.minimax_agent import MinimaxAgent
+from core.training import play_game, evaluate_agent
 
 Q_TABLE_PATH = Path(__file__).parent / 'q_table.pkl'
+# Training runs vary: an occasional seed leaves a few weak positions, so the default run is reproducible
+SEED = 0
 
 
 def train_agent(n_episodes: int = 20000, learning_rate: float = 0.1, discount_factor: float = 0.9,
@@ -55,6 +57,7 @@ def train_agent(n_episodes: int = 20000, learning_rate: float = 0.1, discount_fa
 
 
 def main() -> None:
+    random.seed(SEED)
     agent = train_agent()
     agent.save(str(Q_TABLE_PATH))
 
